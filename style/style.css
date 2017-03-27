@@ -5,3 +5,8 @@ form {
 .btn {
     margin: 5px;
 }
+
+h3, h6, p {
+    padding: 5px;
+    margin: 10px;
+}
