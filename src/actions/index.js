@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Post } from '../models/post.model';
 
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const CREATE_POST = 'CREATE_POST';
