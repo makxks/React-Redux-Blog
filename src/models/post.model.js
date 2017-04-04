@@ -3,5 +3,6 @@ export class Post {
         categories,
         content,
         timePosted,
-        comments) {}
+        comments,
+        id) {}
 }
