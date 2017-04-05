@@ -5,20 +5,34 @@ export const CREATE_POST = 'CREATE_POST';
 export const FETCH_POST = 'FETCH_POST';
 export const DELETE_POST = 'DELETE_POST';
 
-    var firebase;
     var database = firebase.database();
 
 export function fetchPosts() {
-    //const request = axios.get(`${ROOT_URL}/posts${API_KEY}`);
-
-    return {
-        type: FETCH_POSTS,
-        payload: request
-    };
+    var request;
+    if(database.ref('posts/')){
+        var postsRef = database.ref('posts/');
+        return database.ref('posts/').once('value')
+            .then(function(snapshot) {
+                console.log(snapshot);
+                return {
+                    type: FETCH_POSTS,
+                    payload: snapshot
+                };
+            });        
+    }
+    else {
+        database.ref('posts/').set({
+            
+        });
+    }
 }
 
 export function createPost(props) {
-    //const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, props);
+    var newPostKey = database.ref().child('posts').push().key;
+    var post = new Post(props.title, props.categories, props.content, new Date(), {}, newPostKey);
+    var update = {};
+    update['posts/' + newPostKey] = post;
+    const request = database.ref().update(update);
 
     return {
         type: CREATE_POST,
