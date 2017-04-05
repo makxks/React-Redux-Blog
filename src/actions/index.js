@@ -30,10 +30,9 @@ export function fetchPosts() {
 export function createPost(props) {
     var newPostKey = database.ref().child('posts').push().key;
     var post = new Post(props.title, props.categories, props.content, new Date(), {}, newPostKey);
-    var update = {};
-    update['posts/' + newPostKey] = post;
-    const request = database.ref().update(update);
-
+    const request = database.ref('posts/' + newPostKey).set(post);
+    console.log(post);
+    console.log(request);
     return {
         type: CREATE_POST,
         payload: request
