@@ -8,23 +8,15 @@ export const DELETE_POST = 'DELETE_POST';
     var database = firebase.database();
 
 export function fetchPosts() {
-    var request;
-    if(database.ref('posts/')){
-        var postsRef = database.ref('posts/');
-        return database.ref('posts/').once('value')
-            .then(function(snapshot) {
-                console.log(snapshot);
-                return {
-                    type: FETCH_POSTS,
-                    payload: snapshot
-                };
-            });        
-    }
-    else {
-        database.ref('posts/').set({
-            
-        });
-    }
+    var postsRef = database.ref('posts/');
+    return database.ref('posts/').once('value')
+        .then(function(snapshot) {
+            console.log(snapshot);
+            return {
+                type: FETCH_POSTS,
+                payload: snapshot
+            };
+        });        
 }
 
 export function createPost(props) {
