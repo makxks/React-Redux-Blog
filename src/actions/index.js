@@ -5,26 +5,19 @@ export const CREATE_POST = 'CREATE_POST';
 export const FETCH_POST = 'FETCH_POST';
 export const DELETE_POST = 'DELETE_POST';
 
-    var database = firebase.database();
 
 export function fetchPosts() {
-    var postsRef = database.ref('posts/');
-    return database.ref('posts/').once('value')
-        .then(function(snapshot) {
-            console.log(snapshot);
-            return {
-                type: FETCH_POSTS,
-                payload: snapshot
-            };
-        });        
+    // add get request to db
+
+    return {
+        type: FETCH_POSTS,
+        payload: snapshot
+    };      
 }
 
 export function createPost(props) {
-    var newPostKey = database.ref().child('posts').push().key;
-    var post = new Post(props.title, props.categories, props.content, new Date(), {}, newPostKey);
-    const request = database.ref('posts/' + newPostKey).set(post);
-    console.log(post);
-    console.log(request);
+    //add post request to db
+    
     return {
         type: CREATE_POST,
         payload: request

@@ -16,10 +16,6 @@ class PostsNew extends Component {
                 // new path to navigate to
                 this.context.router.push('/');
              })
-        /*var newPostKey = firebase.database().ref().child('posts').push().key;
-        var d = new Date();
-        console.log(d);
-        firebase.database().ref('posts/' + newPostKey).set({title: props.title, categories: props.categories, content: props.content, timePosted: d, comments: {}, id: newPostKey});*/
     }
 
     render() {
