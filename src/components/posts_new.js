@@ -9,17 +9,17 @@ class PostsNew extends Component {
     };
 
     onSubmit(props) {
-        this.props.createPost(props)
+        /*this.props.createPost(props)
             .then(() => { 
                 // blog post has been created navigate the user to the index
                 // navigate by calling this.context.router.push with the
                 // new path to navigate to
                 this.context.router.push('/');
-             })
-        /*var newPostKey = firebase.database().ref().child('posts').push().key;
+             })*/
+        var newPostKey = firebase.database().ref().child('posts').push().key;
         var d = new Date();
         console.log(d);
-        firebase.database().ref('posts/' + newPostKey).set({title: props.title, categories: props.categories, content: props.content, timePosted: d, comments: {}, id: newPostKey});*/
+        firebase.database().ref('posts/' + newPostKey).set({title: props.title, categories: props.categories, content: props.content, timePosted: d, comments: {}, id: newPostKey});
     }
 
     render() {
