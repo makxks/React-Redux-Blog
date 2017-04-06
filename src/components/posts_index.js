@@ -9,7 +9,8 @@ class PostsIndex extends Component {
     }
 
     renderPosts() {
-        return this.props.posts.map((post) => {
+        var postsArr = Object.keys(this.props.posts).map(key => this.props.posts[key]);
+        return postsArr.map((post) => {
             return (
                 <li className="list-group-item" key={post.id}>
                     <Link to={"posts/" + post.id}>
@@ -22,6 +23,7 @@ class PostsIndex extends Component {
     }
 
     render() {
+        console.log(this.props.posts);
         return (
             <div>
                 <div className="text-xs-right">

@@ -5,9 +5,11 @@ const INITIAL_STATE = { all: [], post: null };
 export default function (state = INITIAL_STATE, action) {
     switch(action.type) {
     case FETCH_POST:
-        return { ...state, post: action.payload.data };
+        return { ...state, post: action.payload };
     case FETCH_POSTS:
-        return { ...state, all: action.payload.data };
+        console.log("action: " + action);
+        console.log("payload: " + action.payload);
+        return { ...state, all: action.payload };
     default:
         return state;
     }

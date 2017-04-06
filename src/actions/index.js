@@ -11,15 +11,15 @@ export function fetchPosts() {
     var postsRef = database.ref('posts/');
     return database.ref('posts/').once('value')
         .then(function(snapshot) {
-            console.log(snapshot);
+            console.log(snapshot.val());
             return {
                 type: FETCH_POSTS,
-                payload: snapshot
+                payload: snapshot.val()
             };
         });        
 }
 
-export function createPost(props) {
+/*export function createPost(props) {
     var newPostKey = database.ref().child('posts').push().key;
     var post = new Post(props.title, props.categories, props.content, new Date(), {}, newPostKey);
     const request = database.ref('posts/' + newPostKey).set(post);
@@ -29,7 +29,7 @@ export function createPost(props) {
         type: CREATE_POST,
         payload: request
     }
-}
+}*/
 
 export function fetchPost(id) {
     //const request = axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`);
