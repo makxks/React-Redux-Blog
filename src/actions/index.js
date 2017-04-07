@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const CREATE_POST = 'CREATE_POST';
 export const FETCH_POST = 'FETCH_POST';
@@ -9,7 +7,7 @@ export const DELETE_POST = 'DELETE_POST';
 
 export function fetchPosts() {
     var postsRef = database.ref('posts/');
-    return database.ref('posts/').once('value')
+    return postsRef.once('value')
         .then(function(snapshot) {
             console.log(snapshot.val());
             return {
@@ -32,19 +30,22 @@ export function fetchPosts() {
 }*/
 
 export function fetchPost(id) {
-    //const request = axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`);
-
-    return {
-        type: FETCH_POST,
-        payload: request
-    };
+    var postRef = database.ref('posts/' + id);
+    return postRef.once('value')
+        .then(function(snapshot) {
+            console.log(snapshot.val());
+            return {
+                type: FETCH_POST,
+                payload: snapshot.val()
+            };
+        });
 }
 
 export function deletePost(id) {
-    //const request = axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`);
+    var postRef = database.ref('posts/' + id);
 
     return {
         type: DELETE_POST,
-        payload: request
+        payload: postRef.remove()
     };
 }
