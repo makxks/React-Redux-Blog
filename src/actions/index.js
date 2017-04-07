@@ -3,7 +3,7 @@ export const CREATE_POST = 'CREATE_POST';
 export const FETCH_POST = 'FETCH_POST';
 export const DELETE_POST = 'DELETE_POST';
 
-    var database = firebase.database();
+var database = firebase.database();
 
 export function fetchPosts() {
     var postsRef = database.ref('posts/');
