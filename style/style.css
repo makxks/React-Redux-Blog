@@ -10,3 +10,12 @@ h3, h6, p {
     padding: 5px;
     margin: 10px;
 }
+
+.singlePost {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin-top: 50px;
+}

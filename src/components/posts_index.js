@@ -9,7 +9,7 @@ class PostsIndex extends Component {
     }
 
     renderNewPostButton() {
-        if(firebase.auth().currentUser && firebase.auth().currentUser.uid == "HpSs3QseDCa17bHO9tHM4eEJqNH3") {
+        //if(firebase.auth().currentUser && firebase.auth().currentUser.uid == "HpSs3QseDCa17bHO9tHM4eEJqNH3") {
             return (
                 <div className="text-xs-right">
                     <Link to="/posts/new" className="btn btn-primary">
@@ -17,10 +17,10 @@ class PostsIndex extends Component {
                     </Link>
                 </div>
             );
-        }
-        else {
+        //}
+        //else {
             return;
-        }
+        //}
     }
 
     renderPosts() {
@@ -45,7 +45,7 @@ class PostsIndex extends Component {
     render() {
         console.log(this.props.posts);
         return (
-            <div className="singlePost">
+            <div>
                 {this.renderNewPostButton()}
                 <h3>Posts</h3>
                 <ul className="list-group">
