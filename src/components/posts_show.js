@@ -19,6 +19,18 @@ class PostsShow extends Component {
             });
     }
 
+    renderPostImage(){
+        const { post } = this.props;
+        if(post.imageUrl && post.imageUrl != ""){
+            return (
+                <img src={post.imageUrl}></img>
+            );
+        }
+        else {
+            return;
+        }
+    }
+
     render() {
         const { post } = this.props;
 
@@ -34,6 +46,7 @@ class PostsShow extends Component {
                     onClick={this.onDeleteClick.bind(this)}>
                     Delete Post
                 </button>
+                {this.renderPostImage()}
                 <h3>{post.title}</h3>
                 <h6>Categories: {post.categories}</h6>
                 <p>{post.content}</p>

@@ -11,7 +11,14 @@ class PostsNew extends Component {
     onSubmit(props) {
         var newPostKey = firebase.database().ref().child('posts').push().key;
         var d = new Date();
-        firebase.database().ref('posts/' + newPostKey).set({title: props.title, categories: props.categories, content: props.content, timePosted: d, comments: {}, id: newPostKey});
+        firebase.database().ref('posts/' + newPostKey).set({
+            title: props.title, 
+            categories: props.categories, 
+            imageUrl: props.imageUrl, 
+            content: props.content, 
+            timePosted: d, 
+            comments: {}, 
+            id: newPostKey});
         this.context.router.push('/');
         
         /*this.props.createPost(props)
@@ -24,7 +31,7 @@ class PostsNew extends Component {
     }
 
     render() {
-        const { fields: { title, categories, content }, handleSubmit } = this.props;
+        const { fields: { title, categories, content, imageUrl }, handleSubmit } = this.props;
  
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -43,6 +50,11 @@ class PostsNew extends Component {
                     <div className="text-help">
                         {categories.touched ? categories.error : ''}
                     </div>
+                </div>
+
+                <div className={`form-group`}>
+                    <label>Image URL</label>
+                    <input type="text" className="form-control" {...imageUrl} />
                 </div>
 
                 <div className={`form-group ${content.touched && content.invalid ? 'has-danger' : ''}`}>
@@ -83,6 +95,6 @@ function validate(values) {
 
 export default reduxForm({
     form: 'PostsNew',
-    fields: ['title', 'categories', 'content'],
+    fields: ['title', 'categories', 'imageUrl', 'content'],
     validate
 }, null, { createPost })(PostsNew);
