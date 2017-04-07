@@ -26,7 +26,11 @@ class PostsIndex extends Component {
     renderPosts() {
         if(this.props.posts) {
             var postsArr = Object.keys(this.props.posts).map(key => this.props.posts[key]);
-            return postsArr.map((post) => {
+            var orderedArr = [];
+            for(var i = postsArr.length-1; i>=0; i--) {
+                orderedArr[(postsArr.length-1-i)] = postsArr[i];
+            }
+            return orderedArr.map((post) => {
                 return (
                     <li className="list-group-item" key={post.id}>
                         <Link to={"posts/" + post.id}>

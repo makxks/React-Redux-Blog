@@ -11,12 +11,20 @@ class PostsNew extends Component {
     onSubmit(props) {
         var newPostKey = firebase.database().ref().child('posts').push().key;
         var d = new Date();
+        console.log("time" + d);
+        var imageSrc;
+        if(!props.imageUrl || props.imageUrl==""){
+            imageSrc = "none";
+        }
+        else {
+            imageSrc = props.imageUrl;
+        }
         firebase.database().ref('posts/' + newPostKey).set({
             title: props.title, 
             categories: props.categories, 
-            imageUrl: props.imageUrl, 
+            imageUrl: imageSrc, 
             content: props.content, 
-            timePosted: d, 
+            timePosted: d.toLocaleTimeString() + " " + d.toDateString(), 
             comments: {}, 
             id: newPostKey});
         this.context.router.push('/');
@@ -46,7 +54,7 @@ class PostsNew extends Component {
 
                 <div className={`form-group ${categories.touched && categories.invalid ? 'has-danger' : ''}`}>
                     <label>Categories</label>
-                    <input type="text" className="form-control" {...categories} />
+                    <input type="text" className="form-control" {...categories} default="none" />
                     <div className="text-help">
                         {categories.touched ? categories.error : ''}
                     </div>

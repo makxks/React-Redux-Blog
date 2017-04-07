@@ -7,8 +7,6 @@ export default function (state = INITIAL_STATE, action) {
     case FETCH_POST:
         return { ...state, post: action.payload };
     case FETCH_POSTS:
-        console.log("action: " + action);
-        console.log("payload: " + action.payload);
         return { ...state, all: action.payload };
     default:
         return state;

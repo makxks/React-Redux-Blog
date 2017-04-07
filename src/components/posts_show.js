@@ -21,7 +21,7 @@ class PostsShow extends Component {
 
     renderPostImage(){
         const { post } = this.props;
-        if(post.imageUrl && post.imageUrl != ""){
+        if(post.imageUrl && post.imageUrl != "none"){
             return (
                 <img src={post.imageUrl} height="250px"></img>
             );
@@ -48,8 +48,9 @@ class PostsShow extends Component {
                 </button>
                 <div className="singlePost">
                     {this.renderPostImage()}
-                    <h3>{post.title}</h3>
-                    <h6>Categories: {post.categories}</h6>
+                    <h2>{post.title}</h2>
+                    <h4>Categories: {post.categories}</h4>
+                    <h6>Time Posted: {post.timePosted}</h6>
                     <p>{post.content}</p>
                 </div>
             </div>
