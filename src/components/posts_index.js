@@ -9,6 +9,9 @@ class PostsIndex extends Component {
     }
 
     renderNewPostButton() {
+        //readd uid check later
+        //when added to website and login checked
+        
         //if(firebase.auth().currentUser && firebase.auth().currentUser.uid == "HpSs3QseDCa17bHO9tHM4eEJqNH3") {
             return (
                 <div className="text-xs-right">
@@ -45,6 +48,11 @@ class PostsIndex extends Component {
             return <div></div>
         }
     }
+    
+    renderSearchBar() {
+        // add a search bar here
+        // search by categories
+    }
 
     render() {
         console.log(this.props.posts);
@@ -52,6 +60,7 @@ class PostsIndex extends Component {
             <div>
                 {this.renderNewPostButton()}
                 <h3>Posts</h3>
+                {this.renderSearchBar()}
                 <ul className="list-group">
                     {this.renderPosts()}
                 </ul>
