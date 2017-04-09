@@ -33,6 +33,13 @@ class PostsIndex extends Component {
             for(var i = postsArr.length-1; i>=0; i--) {
                 orderedArr[(postsArr.length-1-i)] = postsArr[i];
             }
+            // if search == true return
+            // loop through ordered array
+            // for each post split and loop through categories, and if any of the categories == searched term
+            // push to searched array
+            // then apply searched array to final array
+            // else apply ordered array to final array
+            // then change orderedArr.map -> finalArr.map
             return orderedArr.map((post) => {
                 return (
                     <li className="list-group-item" key={post.id}>
