@@ -17,10 +17,6 @@ export function fetchPosts() {
         });        
 }
 
-// add a searchPosts function take a (category) parameter
-// loop through posts and return posts where any of the categories
-// are equal to the searched category
-
 /*export function createPost(props) {
     var newPostKey = database.ref().child('posts').push().key;
     var post = new Post(props.title, props.categories, props.content, new Date(), {}, newPostKey);

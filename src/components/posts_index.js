@@ -1,9 +1,16 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
 import { Link } from 'react-router';
 
 class PostsIndex extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { searchTerm: '' };
+    }
+
     componentWillMount() {
         this.props.fetchPosts();
     }
@@ -22,7 +29,7 @@ class PostsIndex extends Component {
             );
         //}
         //else {
-            return;
+        //    return;
         //}
     }
 
@@ -30,17 +37,24 @@ class PostsIndex extends Component {
         if(this.props.posts) {
             var postsArr = Object.keys(this.props.posts).map(key => this.props.posts[key]);
             var orderedArr = [];
+            var finalArr = [];
             for(var i = postsArr.length-1; i>=0; i--) {
                 orderedArr[(postsArr.length-1-i)] = postsArr[i];
             }
-            // if search == true return
-            // loop through ordered array
-            // for each post split and loop through categories, and if any of the categories == searched term
-            // push to searched array
-            // then apply searched array to final array
-            // else apply ordered array to final array
-            // then change orderedArr.map -> finalArr.map
-            return orderedArr.map((post) => {
+            if(this.state.searchTerm != ''){
+                for(var i = 0; i < orderedArr.length; i++){
+                    var categories = orderedArr[i].categories.split(" ");
+                    for (var j = 0; j < categories.length; j++){
+                        if(categories[j] == this.state.searchTerm){
+                            finalArr.push(orderedArr[i]);
+                        }
+                    }
+                }
+            }
+            else {
+                finalArr = orderedArr;
+            }
+            return finalArr.map((post) => {
                 return (
                     <li className="list-group-item" key={post.id}>
                         <Link to={"posts/" + post.id}>
@@ -55,10 +69,25 @@ class PostsIndex extends Component {
             return <div></div>
         }
     }
+
+    onSearchInputChange(term){
+        this.setState({searchTerm: term});
+    }
+
+    onCancelSearch(){
+        this.setState({searchTerm: ''});
+    }
     
-    renderSearchBar() {
-        // add a search bar here
-        // search by categories
+    renderSearchBar() {     
+        return (
+            <form onSubmit={this.onSearchSubmit} className="searchBar">
+                <input
+                    placeholder="Search posts by categories"
+                    value = {this.state.enteredTerm}
+                    className = "formInput"
+                    onChange = {event => this.onSearchInputChange(event.target.value)} />
+            </form>
+        )
     }
 
     render() {
