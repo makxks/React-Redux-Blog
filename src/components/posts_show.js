@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../actions/index';
 import { Link } from 'react-router';
+import Comment from './comments';
 
 class PostsShow extends Component {
     static contextTypes = {
@@ -69,8 +70,7 @@ class PostsShow extends Component {
                     <p>{post.content}</p>
                 </div>
                 <div className="comments">
-                    {this.renderCommentForm()}
-                    {this.renderComments()}
+                    <Comment post={this.state.post} />
                 </div>
             </div>
         );
