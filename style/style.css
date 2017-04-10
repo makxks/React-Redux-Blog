@@ -30,3 +30,30 @@ h3, h6, p {
     width: 100%;
     border-radius: 5px;
 }
+
+.blogs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 50px;
+}
+
+.blogHolder {
+    width: 75%;
+}
+
+.blogButton {
+    width: 100%;
+}
+
+.blogTitle {
+    margin-top: 40px;
+}
+
+.buttonHolder {
+    width: 100%;
+    height: 15px;
+    margin-top: 10px;
+}

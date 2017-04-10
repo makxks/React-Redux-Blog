@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
 import { Link } from 'react-router';
@@ -7,25 +7,50 @@ import { Link } from 'react-router';
 class PostsIndex extends Component {
     constructor(props) {
         super(props);
-
+        
         this.state = { searchTerm: '' };
     }
 
+    static contextTypes = {
+        router: PropTypes.object
+    };
+
     componentWillMount() {
-        this.props.fetchPosts();
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
+        this.props.fetchPosts(blog);
+    }
+
+    goHome() {
+        this.context.router.push('/')
+    }
+
+    renderHomeButton() {
+        return ( 
+            <button 
+                className="pull-xs-left btn btn-primary homeButton"
+                onClick={this.goHome.bind(this)}>
+                Home
+            </button>
+        )
+    }
+
+    goToNewPost() {
+        this.context.router.push('posts/new')
     }
 
     renderNewPostButton() {
         //readd uid check later
         //when added to website and login checked
-        
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];        
         //if(firebase.auth().currentUser && firebase.auth().currentUser.uid == "HpSs3QseDCa17bHO9tHM4eEJqNH3") {
             return (
-                <div className="text-xs-right">
-                    <Link to="/posts/new" className="btn btn-primary">
+                <button 
+                    className="pull-xs-right btn btn-primary newButton"
+                    onClick={this.goToNewPost.bind(this)}>
                         Add a Post
-                    </Link>
-                </div>
+                </button>
             );
         //}
         //else {
@@ -34,6 +59,8 @@ class PostsIndex extends Component {
     }
 
     renderPosts() {
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
         if(this.props.posts) {
             var postsArr = Object.keys(this.props.posts).map(key => this.props.posts[key]);
             var orderedArr = [];
@@ -66,7 +93,11 @@ class PostsIndex extends Component {
             });
         }
         else {
-            return <div></div>
+            return (
+                <div>
+                    <h3>No posts yet... </h3>
+                </div>
+            )
         }
     }
 
@@ -91,11 +122,16 @@ class PostsIndex extends Component {
     }
 
     render() {
-        console.log(this.props.posts);
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
+        console.log(blog);
         return (
             <div>
-                {this.renderNewPostButton()}
-                <h3>Posts</h3>
+                <div className="buttonHolder">
+                    {this.renderHomeButton()}
+                    {this.renderNewPostButton()}
+                </div>
+                <h3 className="blogTitle">{blog}</h3>
                 {this.renderSearchBar()}
                 <ul className="list-group">
                     {this.renderPosts()}

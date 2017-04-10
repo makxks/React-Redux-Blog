@@ -9,13 +9,17 @@ class PostsShow extends Component {
     };
 
     componentWillMount() {
-        this.props.fetchPost(this.props.params.id);
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
+        this.props.fetchPost(this.props.params.id, blog);
     }
 
     onDeleteClick() {
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
         this.props.deletePost(this.props.params.id)
             .then(() => {
-                this.context.router.push('/');
+                this.context.router.push('/' + blog + '/posts');
             });
     }
 
@@ -31,8 +35,16 @@ class PostsShow extends Component {
         }
     }
 
+    returnToIndex(){
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
+        this.context.router.push('/' + blog + '/posts');
+    }
+
     render() {
         const { post } = this.props;
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
 
         if(!post) {
             return<div></div>
@@ -40,9 +52,12 @@ class PostsShow extends Component {
 
         return (
             <div>
-                <Link to="/">Back To Index</Link>
+                <button className="pull-xs-left btn btn-primary"
+                    onClick={this.returnToIndex.bind(this)}>
+                    Back To Index
+                </button>
                 <button 
-                    className="btn btn-danger pull-xs-right"
+                    className="pull-xs-right btn btn-danger"
                     onClick={this.onDeleteClick.bind(this)}>
                     Delete Post
                 </button>

@@ -9,7 +9,9 @@ class PostsNew extends Component {
     };
 
     onSubmit(props) {
-        var newPostKey = firebase.database().ref().child('posts').push().key;
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
+        var newPostKey = firebase.database().ref().child(blog + '/posts').push().key;
         var d = new Date();
         console.log("time" + d);
         var imageSrc;
@@ -19,7 +21,7 @@ class PostsNew extends Component {
         else {
             imageSrc = props.imageUrl;
         }
-        firebase.database().ref('posts/' + newPostKey).set({
+        firebase.database().ref(blog + '/posts/' + newPostKey).set({
             title: props.title, 
             categories: props.categories, 
             imageUrl: imageSrc, 
@@ -27,7 +29,7 @@ class PostsNew extends Component {
             timePosted: d.toLocaleTimeString() + " " + d.toDateString(), 
             comments: {}, 
             id: newPostKey});
-        this.context.router.push('/');
+        this.context.router.push('/' + blog + '/posts');
         
         /*this.props.createPost(props)
             .then(() => { 
@@ -39,6 +41,8 @@ class PostsNew extends Component {
     }
 
     render() {
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
         const { fields: { title, categories, content, imageUrl }, handleSubmit } = this.props;
  
         return (
@@ -74,7 +78,7 @@ class PostsNew extends Component {
                 </div>
 
                 <button type="submit" className="btn btn-primary">Submit</button>
-                <Link to="/" className="btn btn-danger">Cancel</Link>
+                <Link to={"/" + blog + "/posts"} className="btn btn-danger">Cancel</Link>
             </form>
         );
     }
@@ -105,4 +109,4 @@ export default reduxForm({
     form: 'PostsNew',
     fields: ['title', 'categories', 'imageUrl', 'content'],
     validate
-}, null, { createPost })(PostsNew);
+}, null)(PostsNew);
