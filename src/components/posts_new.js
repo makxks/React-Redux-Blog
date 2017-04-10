@@ -29,18 +29,18 @@ class PostsNew extends Component {
             timePosted: d.toLocaleTimeString() + " " + d.toDateString(), 
             comments: {}, 
             id: newPostKey});
-        this.context.router.push('/' + blog + '/posts');
-        
-        /*this.props.createPost(props)
-            .then(() => { 
-                // blog post has been created navigate the user to the index
-                // navigate by calling this.context.router.push with the
-                // new path to navigate to
-                this.context.router.push('/');
-             })*/       
+        this.context.router.push('/' + blog + '/posts');  
     }
 
     render() {
+        /*if(!firebase.auth().currentUser || firebase.auth().currentUser.uid != "HpSs3QseDCa17bHO9tHM4eEJqNH3"){
+            return (
+                <div>
+                    <h3>You are not authenticated to make new posts</h3>
+                    <Link to={"/" + blog + "/posts"} className="btn btn-danger">Go Back</Link>
+                </div>
+            )
+        }*/
         var blogUrl = window.location.pathname.split("/");
         var blog = blogUrl[1];
         const { fields: { title, categories, content, imageUrl }, handleSubmit } = this.props;
