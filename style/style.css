@@ -57,3 +57,12 @@ h3, h6, p {
     height: 15px;
     margin-top: 10px;
 }
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 5px;
+}

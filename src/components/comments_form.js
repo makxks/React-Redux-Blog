@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 
-class Comment extends Component {
+class CommentForm extends Component {
     onSubmit(props) {
         var blogUrl = window.location.pathname.split("/");
         var blog = blogUrl[1];
@@ -20,7 +20,7 @@ class Comment extends Component {
         if(!firebase.auth().currentUser){
             return (
                 <div>
-                    <h3>You must log in to comment</h3>
+                    <h5>You must log in to comment</h5>
                 </div>
             )
         }
@@ -43,26 +43,10 @@ class Comment extends Component {
         }
     }
 
-    renderComments(){
-        var commentsArr = Object.keys(post.comments).map(key => post.comments[key]);
-        return commentsArr.map((comment) => {
-            return (
-                <li className="list-group-item" key={post.id}>
-                    <h6 className="text-pull-left">author will go here</h6>
-                    <h6 className="text-pull-left">{comment.timePosted}</h6>
-                    <p>{comment.content}</p>
-                </li>
-            );
-        });
-    }
-
     render() {
         return (
             <div>
                 {this.commentForm()}
-                <ul>
-                    {this.renderComments()}
-                </ul>
             </div>
         );
     }
@@ -82,4 +66,4 @@ export default reduxForm({
     form: 'Comments',
     fields: ['content'],
     validate
-}, null)(Comment);
+}, null)(CommentForm);
