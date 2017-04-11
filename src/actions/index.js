@@ -31,7 +31,6 @@ export function fetchPost(id, blog) {
     var postRef = database.ref(blog + '/posts/' + id);
     return postRef.once('value')
         .then(function(snapshot) {
-            console.log(snapshot.val());
             return {
                 type: FETCH_POST,
                 payload: snapshot.val()

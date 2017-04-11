@@ -1,5 +1,6 @@
 form {
     margin: 5px;
+    margin-top: 10px;
 }
 
 .btn {
@@ -70,4 +71,8 @@ h3, h6, p {
 
 .comment, .commentInput, .commentsList {
     width: 100%;
+}
+
+.formTitle {
+    margin-top: 30px;
 }

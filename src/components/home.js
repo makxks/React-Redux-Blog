@@ -25,13 +25,19 @@ class Home extends Component {
                 blogsNames.push(blogsArr[i].name);
             }
             return blogsNames.map((blog) => {
-                return (
-                    <div className="blogHolder" key={blog}>
-                        <Link to={blog + "/posts"} className="btn btn-primary blogButton">
-                            <strong>{blog}</strong>
-                        </Link>
-                    </div>
-                );
+                if (blog != null && blog != undefined)
+                {
+                    return (
+                        <div className="blogHolder" key={blog}>
+                            <Link to={blog + "/posts"} className="btn btn-primary blogButton">
+                                <strong>{blog}</strong>
+                            </Link>
+                        </div>
+                    );
+                }
+                else {
+                    return;
+                }
             });
         }
         else {
@@ -56,6 +62,7 @@ class Home extends Component {
     render() {
         return (
             <div>
+                <LoginButton />
                 {this.newBlogButton()}
                 <div className="blogs">         
                     {this.getBlogList()}

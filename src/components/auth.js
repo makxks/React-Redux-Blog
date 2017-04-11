@@ -1,58 +1,98 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
+import LoginForm from './login_form';
+import SignupForm from './signup_form';
+
+var windowValue = "login";
 
 class Auth extends Component {
-    constructor(props){
-        super(props);
+    static contextTypes = {
+        router: PropTypes.object
+    };
 
-        state = { window:"login" };
+    getWindowValue(){
+        var url = window.location.pathname.split("/");
+        var method = url[2];
+        return method;
+    }
+
+    goHome() {
+        this.context.router.push('/')
+    }
+
+    renderHomeButton() {
+        return ( 
+            <button 
+                className="pull-xs-left btn btn-primary homeButton"
+                onClick={this.goHome.bind(this)}>
+                Home
+            </button>
+        )
     }
 
     renderSignInOut() {
         if(firebase.auth().currentUser){
             return (
-                <li onClick={this.setState({window:"logout"})}>Logout</li>
+                <li><Link className="btn btn-secondary" to={"/auth/logout"}>Logout</Link></li>
             )
         }
         else {
             return (
-                <li onClick={this.setState({window:"login"})}>Login</li>
+                <li><Link className="btn btn-secondary" to={"/auth/login"}>Login</Link></li>
             )
         }
+    }
+
+    renderSignUp() {
+        return(
+            <li><Link className="btn btn-secondary" to={"/auth/signup"}>Signup</Link></li>
+        )
+    }
+
+    signOut() {
+        firebase.auth().signOut();
+        this.context.router.push('/');
     }
 
     renderAuth() {
-        /*if(this.state.window == "signup"){
+        if(this.getWindowValue() == "signup"){
             return (
-                <SignupForm />
+                <SignupForm className="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2" />
             )
         }
-        else if(this.state.window == "login"){
+        else if(this.getWindowValue() == "login"){
             return (
-                <LoginForm />
+                <LoginForm className="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2" />
             )
         }
-        else if(this.state.window == "logout"){
+        else if(this.getWindowValue() == "logout"){
             return (
-                <div>
+                <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
                     <h3>Are you sure you want to logout?</h3>
-                    <button onClick={firebase.auth().signout()} className="btn btn-danger">Logout</button>
+                    <button onClick={this.signOut()} className="btn btn-danger">Logout</button>
                 </div>
             )
-        }*/
+        }
     }
 
     render() {
-        <div class="authComponentsContainer">
-            <header>
-                <nav class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-                    <ul class="nav nav-tabs">
-                        <li onClick={this.setState({window:"signup"})}>Signup</li>
-                        {this.renderSignInOut.bind(this)}
-                    </ul>
-                </nav>
-            </header>
+        return (
+        <div>
+            <div>
+            {this.renderHomeButton()}
+                <header>
+                    <nav>
+                        <ul className="nav nav-justified">
+                            {this.renderSignUp()}
+                            {this.renderSignInOut()}
+                        </ul>
+                    </nav>
+                </header>                
+            </div>
+            {this.renderAuth()}
         </div>
+        )
     }
 }
+
+export default Auth;

@@ -80,7 +80,9 @@ class PostsShow extends Component {
                     <h6>Time Posted: {post.timePosted}</h6>
                     <p>{post.content}</p>
                 </div>
-            </div>
+                <hr />
+                {this.renderComments()}
+            </div>     
         );
     }
 }

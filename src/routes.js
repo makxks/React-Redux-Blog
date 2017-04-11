@@ -16,5 +16,7 @@ export default (
     <Route path="/new" component={BlogsNew} /> 
     <Route path="/:blog/posts/new" component={PostsNew} />
     <Route path="/:blog/posts/:id" component={PostsShow} />
+    <Route path="/auth" component={Auth} />
+    <Route path="/auth/:method" component={Auth} />
 </Route>
 );

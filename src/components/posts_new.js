@@ -12,7 +12,6 @@ class PostsNew extends Component {
         var blog = blogUrl[1];
         var newPostKey = firebase.database().ref().child(blog + '/posts').push().key;
         var d = new Date();
-        console.log("time" + d);
         var imageSrc;
         if(!props.imageUrl || props.imageUrl==""){
             imageSrc = "none";
@@ -32,14 +31,16 @@ class PostsNew extends Component {
     }
 
     render() {
-        /*if(!firebase.auth().currentUser || firebase.auth().currentUser.uid != "HpSs3QseDCa17bHO9tHM4eEJqNH3"){
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
+        if(!firebase.auth().currentUser || firebase.auth().currentUser.uid != "HpSs3QseDCa17bHO9tHM4eEJqNH3"){
             return (
                 <div>
                     <h3>You are not authenticated to make new posts</h3>
                     <Link to={"/" + blog + "/posts"} className="btn btn-danger">Go Back</Link>
                 </div>
             )
-        }*/
+        }
         var blogUrl = window.location.pathname.split("/");
         var blog = blogUrl[1];
         const { fields: { title, categories, content, imageUrl }, handleSubmit } = this.props;

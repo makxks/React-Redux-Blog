@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
 import { Link } from 'react-router';
+import LoginButton from './login_button';
 
 class PostsIndex extends Component {
     constructor(props) {
@@ -46,7 +47,7 @@ class PostsIndex extends Component {
         //when added to website and login checked
         var blogUrl = window.location.pathname.split("/");
         var blog = blogUrl[1];        
-        //if(firebase.auth().currentUser && firebase.auth().currentUser.uid == "HpSs3QseDCa17bHO9tHM4eEJqNH3") {
+        if(firebase.auth().currentUser && firebase.auth().currentUser.uid == "HpSs3QseDCa17bHO9tHM4eEJqNH3") {
             return (
                 <button 
                     className="pull-xs-right btn btn-primary newButton"
@@ -54,10 +55,10 @@ class PostsIndex extends Component {
                         Add a Post
                 </button>
             );
-        //}
-        //else {
-        //    return;
-        //}
+        }
+        else {
+            return;
+        }
     }
 
     renderPosts() {
@@ -126,10 +127,10 @@ class PostsIndex extends Component {
     render() {
         var blogUrl = window.location.pathname.split("/");
         var blog = blogUrl[1];
-        console.log(blog);
         return (
             <div>
                 <div className="buttonHolder">
+                    <LoginButton />
                     {this.renderHomeButton()}
                     {this.renderNewPostButton()}
                 </div>

@@ -15,14 +15,14 @@ class BlogsNew extends Component {
     }
 
     render() {
-        /*if(!firebase.auth().currentUser || firebase.auth().currentUser.uid != "HpSs3QseDCa17bHO9tHM4eEJqNH3"){
+        if(!firebase.auth().currentUser || firebase.auth().currentUser.uid != "HpSs3QseDCa17bHO9tHM4eEJqNH3"){
             return (
                 <div>
                     <h3>You are not authenticated to make new blogs</h3>
                     <Link to="/" className="btn btn-danger">Go Back</Link>
                 </div>
             )
-        }*/
+        }
         const { fields: { blogName }, handleSubmit } = this.props;
  
         return (
