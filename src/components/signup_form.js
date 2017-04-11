@@ -28,7 +28,7 @@ class SignupForm extends Component {
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="commentInput">
                 <h5>Signup</h5>
                 <div className={`form-group commentInput ${email.touched && email.invalid ? 'has-danger' : ''}`}>
-                    <input type="text" className="form-control commentInput" {...email} />
+                    <input type="email" className="form-control commentInput" {...email} />
                     <label>Your email</label>
                     <div className="text-help">
                         {email.touched ? email.error : ''}
