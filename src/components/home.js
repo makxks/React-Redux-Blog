@@ -50,7 +50,7 @@ class Home extends Component {
     }
 
     newBlogButton() {
-        if(!firebase.auth().currentUser || firebase.auth().currentUser.uid != "KQZ3vqQwgBdCmLF2uelBumotcWG2"){
+        if(firebase.auth().currentUser && firebase.auth().currentUser.uid == "KQZ3vqQwgBdCmLF2uelBumotcWG2"){
             return (
                 <div className="text-xs-right buttonHolder">
                     <Link to={"new"} className="btn btn-primary">
