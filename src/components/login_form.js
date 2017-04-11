@@ -56,7 +56,7 @@ function validate(values) {
         errors.email = 'Enter an email';
     }
 
-    if (!values.author) {
+    if (!values.password) {
         errors.password = 'Enter your password';
     }
 
