@@ -16,14 +16,14 @@ class CommentForm extends Component {
         console.log("time" + d);
         firebase.database().ref(blog + '/posts/' + post + '/comments/' + newCommentKey).set({
             content: props.content, 
-            //author: firebase.auth().currentUser.uid,
+            author: props.author,
             timePosted: d.toLocaleTimeString() + " " + d.toDateString(),
             id: newCommentKey});
         window.location.reload();
     }
 
     commentForm(){
-        const { fields: { content }, handleSubmit } = this.props;
+        const { fields: { content, author }, handleSubmit } = this.props;
 
         /*if(!firebase.auth().currentUser){
             return (
@@ -37,6 +37,13 @@ class CommentForm extends Component {
             <div className="commentInput">
                 <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="commentInput">
                     <h5>Create A New Comment</h5>
+                    <div className={`form-group commentInput ${author.touched && author.invalid ? 'has-danger' : ''}`}>
+                        <input type="text" className="form-control commentInput" {...author} />
+                        <label>Your name</label>
+                        <div className="text-help">
+                            {author.touched ? author.error : ''}
+                        </div>
+                    </div>
                     <div className={`form-group commentInput ${content.touched && content.invalid ? 'has-danger' : ''}`}>
                         <textarea className="form-control commentInput" rows="5" {...content} />
                         <div className="text-help">
@@ -66,11 +73,15 @@ function validate(values) {
         errors.content = 'Enter a comment';
     }
 
+    if (!values.author) {
+        errors.author = 'Enter a name';
+    }
+
     return errors;
 }
 
 export default reduxForm({
     form: 'Comments',
-    fields: ['content'],
+    fields: ['content', 'author'],
     validate
 }, null)(CommentForm);

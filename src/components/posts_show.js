@@ -44,6 +44,15 @@ class PostsShow extends Component {
         this.context.router.push('/' + blog + '/posts');
     }
 
+    renderComments() {
+        return (
+            <div className="comments">
+                <CommentForm />
+                <ShowComments />
+            </div>
+        )
+    }
+
     render() {
         const { post } = this.props;
         var blogUrl = window.location.pathname.split("/");
@@ -70,10 +79,6 @@ class PostsShow extends Component {
                     <h4>Categories: {post.categories}</h4>
                     <h6>Time Posted: {post.timePosted}</h6>
                     <p>{post.content}</p>
-                </div>
-                <div className="comments">
-                    <CommentForm />
-                    <ShowComments />
                 </div>
             </div>
         );

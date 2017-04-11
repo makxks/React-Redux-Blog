@@ -10,7 +10,7 @@ class CommentsShow extends Component {
             return commentsArr.map((comment) => {
                 return (
                     <li className="list-group-item comment" key={comment.id}>
-                        <h6 className="text-pull-left"><strong>author will go here</strong></h6>
+                        <h6 className="text-pull-left"><strong>{comment.author}</strong></h6>
                         <h6 className="text-pull-left">{comment.timePosted}</h6>
                         <hr />
                         <p>{comment.content}</p>

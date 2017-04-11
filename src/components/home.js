@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchBlogs } from '../actions/index';
 import { Link } from 'react-router';
+import LoginButton from './login_button';
 
 class Home extends Component {
     constructor(props) {

@@ -36,7 +36,9 @@ class PostsIndex extends Component {
     }
 
     goToNewPost() {
-        this.context.router.push('posts/new')
+        var blogUrl = window.location.pathname.split("/");
+        var blog = blogUrl[1];
+        this.context.router.push('/' + blog + '/posts/new');
     }
 
     renderNewPostButton() {

@@ -7,6 +7,7 @@ import PostsIndex from './components/posts_index';
 import PostsNew from './components/posts_new';
 import PostsShow from './components/posts_show';
 import BlogsNew from './components/blogs_new';
+import Auth from './components/auth';
 
 export default (
 <Route path="/" component={App}>
