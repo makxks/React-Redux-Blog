@@ -11,9 +11,9 @@ import BlogsNew from './components/blogs_new';
 export default (
 <Route path="/" component={App}>
     <IndexRoute component={Home} />
-    <Route path=":blog/posts" component={PostsIndex} />
-    <Route path="new" component={BlogsNew} /> 
-    <Route path="posts/new" component={PostsNew} />
-    <Route path="posts/:id" component={PostsShow} />
+    <Route path="/:blog/posts" component={PostsIndex} />
+    <Route path="/new" component={BlogsNew} /> 
+    <Route path="/:blog/posts/new" component={PostsNew} />
+    <Route path="/:blog/posts/:id" component={PostsShow} />
 </Route>
 );

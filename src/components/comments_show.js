@@ -9,9 +9,10 @@ class CommentsShow extends Component {
             var commentsArr = Object.keys(this.props.post.comments).map(key => this.props.post.comments[key]);
             return commentsArr.map((comment) => {
                 return (
-                    <li className="list-group-item" key={comment.id}>
-                        <h6 className="text-pull-left">author will go here</h6>
+                    <li className="list-group-item comment" key={comment.id}>
+                        <h6 className="text-pull-left"><strong>author will go here</strong></h6>
                         <h6 className="text-pull-left">{comment.timePosted}</h6>
+                        <hr />
                         <p>{comment.content}</p>
                     </li>
                 );
@@ -28,7 +29,7 @@ class CommentsShow extends Component {
 
     render() {
         return (
-            <ul className="list-group">
+            <ul className="list-group commentsList">
                 {this.renderComments()}
             </ul>
         )

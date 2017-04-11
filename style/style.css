@@ -65,4 +65,9 @@ h3, h6, p {
     align-items: center;
     position: relative;
     margin-top: 5px;
+    width: 100%;
+}
+
+.comment, .commentInput, .commentsList {
+    width: 100%;
 }

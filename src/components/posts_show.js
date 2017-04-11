@@ -13,13 +13,14 @@ class PostsShow extends Component {
     componentWillMount() {
         var blogUrl = window.location.pathname.split("/");
         var blog = blogUrl[1];
-        this.props.fetchPost(this.props.params.id, blog);
+        var post = blogUrl[3];
+        this.props.fetchPost(post, blog);
     }
 
     onDeleteClick() {
         var blogUrl = window.location.pathname.split("/");
         var blog = blogUrl[1];
-        this.props.deletePost(this.props.params.id)
+        this.props.deletePost(this.props.params.id, blog)
             .then(() => {
                 this.context.router.push('/' + blog + '/posts');
             });
