@@ -27,7 +27,7 @@ class LoginForm extends Component {
                     </div>
                 </div>
                 <div className={`form-group commentInput ${password.touched && password.invalid ? 'has-danger' : ''}`}>
-                    <input type="text" className="form-control commentInput" {...password} />
+                    <input type="password" className="form-control commentInput" {...password} />
                     <label>Password</label>
                     <div className="text-help">
                         {password.touched ? password.error : ''}
