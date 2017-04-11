@@ -50,13 +50,18 @@ class Home extends Component {
     }
 
     newBlogButton() {
-        return (
-            <div className="text-xs-right buttonHolder">
-                <Link to={"new"} className="btn btn-primary">
-                    Add a Blog
-                </Link>
-            </div>
-        );
+        if(!firebase.auth().currentUser || firebase.auth().currentUser.uid != "KQZ3vqQwgBdCmLF2uelBumotcWG2"){
+            return (
+                <div className="text-xs-right buttonHolder">
+                    <Link to={"new"} className="btn btn-primary">
+                        Add a Blog
+                    </Link>
+                </div>
+            );
+        }
+        else {
+            return;
+        }
     }
 
     render() {

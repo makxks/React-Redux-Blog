@@ -47,7 +47,7 @@ class PostsIndex extends Component {
         //when added to website and login checked
         var blogUrl = window.location.pathname.split("/");
         var blog = blogUrl[1];        
-        if(firebase.auth().currentUser && firebase.auth().currentUser.uid == "HpSs3QseDCa17bHO9tHM4eEJqNH3") {
+        if(firebase.auth().currentUser && firebase.auth().currentUser.uid == "KQZ3vqQwgBdCmLF2uelBumotcWG2") {
             return (
                 <button 
                     className="pull-xs-right btn btn-primary newButton"

@@ -33,7 +33,7 @@ class PostsNew extends Component {
     render() {
         var blogUrl = window.location.pathname.split("/");
         var blog = blogUrl[1];
-        if(!firebase.auth().currentUser || firebase.auth().currentUser.uid != "HpSs3QseDCa17bHO9tHM4eEJqNH3"){
+        if(!firebase.auth().currentUser || firebase.auth().currentUser.uid != "KQZ3vqQwgBdCmLF2uelBumotcWG2"){
             return (
                 <div>
                     <h3>You are not authenticated to make new posts</h3>
