@@ -50,8 +50,11 @@ class Auth extends Component {
     }
 
     signOut() {
-        firebase.auth().signOut();
-        this.context.router.push('/');
+        firebase.auth().signOut().then(function(){
+            this.context.router.push('/');
+        }).catch(function(error){
+            alert('An unknown error occurred');
+        })
     }
 
     renderAuth() {

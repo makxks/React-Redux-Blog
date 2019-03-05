@@ -8,8 +8,15 @@ class LoginForm extends Component {
     };
 
     onSubmit(props) {
-        firebase.auth().signInWithEmailAndPassword(props.email, props.password);
-        this.context.router.push('/');
+        firebase.auth().signInWithEmailAndPassword(props.email, props.password).then(function(){
+            this.context.router.push('/');
+        }).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if (error) {
+                alert('Wrong username or password');
+            }
+        });
     }
 
     loginForm(){
